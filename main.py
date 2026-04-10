@@ -10,3 +10,5 @@ data = {
 r = requests.post(url, json=data)
 
 print(r.json())
+
+# Output:
