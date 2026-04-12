@@ -55,9 +55,9 @@ class FamilyDataPool:
             cls._data['income'] = cls._data['income'].clip(lower=3000) ## zakładamy pensję minimalną jako dolny cap
             cls._data['days_to_vacation'] = cls._data['days_to_vacation'].clip(lower=1) 
             
-            # # ZAPIS DO PLIKU: w przyszłych uruchomieniach pobieramy pojedynczą wartość
-            # cls._data.to_csv(cls._FILE_PATH, index=False)
-            # print(f"Zapisano nową pulę profili do pliku: {cls._FILE_PATH}")
+            # ZAPIS DO PLIKU: w przyszłych uruchomieniach pobieramy pojedynczą wartość
+            cls._data.to_csv(cls._FILE_PATH, index=False)
+            print(f"Zapisano nową pulę profili do pliku: {cls._FILE_PATH}")
             
         return cls._data
 
@@ -91,12 +91,15 @@ class BasePerson_1:
         # logika akceptacji oferty
 
         if not offers:
-            return "REJECTED_NO_OFFERS", None  
+            return {
+                "offer_id": None,
+                "decision": "decline"
+            }
         """
         Podejmuje decyzję na podstawie otrzymanej oferty i cech klienta.
         """
         guests = self._public_data["guests"]
-        days = self._public_data["days_to_stay"]
+        days = int(self.base_profile['days_to_stay'])
         days_to_vacation = self.base_profile['days_to_vacation']
         returning_client = self._context["returning_client"]
 
@@ -183,10 +186,15 @@ class BasePerson_1:
             p_accept = 0.0 # fallback
             
         if random.random() < p_accept:
-            return "ACCEPTED", Best_offer[0]
+            return {
+                "offer_id" : Best_offer[0],
+                "decision" : "accept"
+            }
         else:
-            return "REJECTED", None
-
+            return {
+                "offer_id" : None,
+                "decision" : "decline"
+            }
 
     def _determine_rooms(self, guests: int) -> list[int]:
         """Rozbija ilość gości na konkretne pokoje."""
@@ -267,38 +275,39 @@ class BasePerson_1:
             "monthly_income_per_person": round(monthly_income_per_person, 2),
             "max_budget_per_person_per_day": round(budget_per_person_per_day, 2),
             "get_up_with_left_foot": get_up_with_left_foot,
-            "is_vacation_time_strictly_locked": days_to_vacation < 30 # Jeśli mało czasu, urlop przyklepany w HR
+            "is_vacation_time_strictly_locked": days_to_vacation < 30, # Jeśli mało czasu, urlop przyklepany w HR
+            "days_to_stay": days_to_stay
         }
 
 
 
 
-# ==========================================
-# SYMULACJA RUCHU ## test generatora zapytań
-# ==========================================
-FamilyDataPool.get_data() # generowanie próby w pamięci podręcznej
-print("Rozpoczynam symulację napływających zapytań. Symulacja potrwa 60 sekund...\n")
+# # ==========================================
+# # SYMULACJA RUCHU ## test generatora zapytań
+# # ==========================================
+# FamilyDataPool.get_data() # generowanie próby w pamięci podręcznej
+# print("Rozpoczynam symulację napływających zapytań. Symulacja potrwa 60 sekund...\n")
+#
+# start_time = time.time()
+# duration = 60 # czas w sekundach
+# request_count = 0
+#
+# while time.time() - start_time < duration:
+#     # 1. Tworzymy nową instancję persony w każdej iteracji.
+#     current_person = BasePerson_1()
+#
+#     # 2. Generujemy zapytanie (zakładamy statyczną datę lub możemy ją przesuwać)
+#     request = current_person.generate_requests('2026-02-11')
+#     request_count += 1
+#
+#     # 3. Wypisujemy wynik na konsolę
+#     print(f"--- Zapytanie nr {request_count} ---")
+#     print(request)
+#     print("-" * 40)
+#
+#     # 4. Usypiamy pętlę na losowy czas, np. od 0.5 do 3.5 sekundy,
+#     # aby zasymulować realistyczny ruch (zapytania nie wpadają co milisekundę)
+#     sleep_time = random.uniform(0.5, 3.5)
+#     time.sleep(sleep_time)
 
-start_time = time.time()
-duration = 60 # czas w sekundach
-request_count = 0
-
-while time.time() - start_time < duration:
-    # 1. Tworzymy nową instancję persony w każdej iteracji. 
-    current_person = BasePerson_1()
-    
-    # 2. Generujemy zapytanie (zakładamy statyczną datę lub możemy ją przesuwać)
-    request = current_person.generate_requests('2026-02-11')
-    request_count += 1
-    
-    # 3. Wypisujemy wynik na konsolę
-    print(f"--- Zapytanie nr {request_count} ---")
-    print(request)
-    print("-" * 40)
-    
-    # 4. Usypiamy pętlę na losowy czas, np. od 0.5 do 3.5 sekundy, 
-    # aby zasymulować realistyczny ruch (zapytania nie wpadają co milisekundę)
-    sleep_time = random.uniform(0.5, 3.5)
-    time.sleep(sleep_time)
-
-print(f"\nKoniec symulacji. W ciągu minuty wygenerowano {request_count} unikalnych zapytań od klientów rodzinnych.")
+# print(f"\nKoniec symulacji. W ciągu minuty wygenerowano {request_count} unikalnych zapytań od klientów rodzinnych.")
