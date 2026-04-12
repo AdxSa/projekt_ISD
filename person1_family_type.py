@@ -169,7 +169,9 @@ class BasePerson_1:
                     weekend_bonus = 0.2  # Miły dodatek
                 else:
                     weekend_bonus = 0.0  # Środek tygodnia jest neutralny
+            U += weekend_bonus
 
+            
             offers_utility[offer.get("offer_id")] = U
 
 
