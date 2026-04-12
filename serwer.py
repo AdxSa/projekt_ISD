@@ -3,7 +3,7 @@ import random
 import time
 
 app = FastAPI()
-
+#
 @app.post("/receive")
 def receive(data: dict):
     print("Dostałem:", data)
