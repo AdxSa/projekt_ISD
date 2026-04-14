@@ -7,7 +7,7 @@ from dynamic_copula import generate_dynamic_copula_data
 import random
 import time
 import math
-
+#
 class SnobDataPool:
     _data = None
     _FILE_PATH = "snob_base_profiles.csv"
