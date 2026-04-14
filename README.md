@@ -1,4 +1,4 @@
-## Persona: Family Client
+# Persona: Family Client
 
 ### Opis ogólny
 Klient typu **Family** to osoba planująca wyjazd rodzinny (3+ osób), zazwyczaj z dużym wyprzedzeniem. Charakteryzuje się większą wrażliwością cenową oraz koniecznością dopasowania oferty do potrzeb całej rodziny (dzieci, długość pobytu, terminy szkolne).
@@ -94,7 +94,7 @@ Persona „Family” służy do:
 
 ---
 
-## Persona: Snob Client
+# Persona: Snob Client
 
 ### Opis ogólny
 Klient typu **Snob** to zamożna, wymagająca osoba podróżująca samotnie lub z partnerem. Charakteryzuje się wysokimi oczekiwaniami oraz dużą wrażliwością na jakość i prestiż oferty. Często dokonuje rezerwacji w trybie *last-minute* i preferuje krótkie pobyty o wysokim standardzie.
@@ -176,7 +176,7 @@ Model uwzględnia:
 
 ---
 
-## Typ klienta: Biznesowy
+# Typ klienta: Biznesowy
 
 ### Opis ogólny  
 Klient biznesowy to osoba podróżująca głównie służbowo, zazwyczaj samotnie i na krótkie pobyty.  
@@ -279,7 +279,7 @@ Klient biznesowy:
 - im bliżej wyjazdu, tym szybciej podejmuje decyzję  
 - jeśli firma płaci → cena ma mniejsze znaczenie  
 
-## Podział pracy w grupie
+# Podział pracy w grupie
 
 - Typ rodzinny - Adam
 - Typ snob - Filip
