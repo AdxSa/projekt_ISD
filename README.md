@@ -222,7 +222,7 @@ Wpływa ona na:
 
 ### Model decyzyjny  
 
-Decyzja podejmowana jest przy użyciu modelu softmax (Multinomial Logit).  
+Decyzja podejmowana jest przy użyciu idei losowej użyteczności, prowadzącej do modelu Multinomial Logit.  
 Każda oferta otrzymuje wartość użyteczności V, a następnie przekształcana jest w prawdopodobieństwo wyboru.
 
 Model uwzględnia także opcję "decline" (odrzucenie wszystkich ofert).
