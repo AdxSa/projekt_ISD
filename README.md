@@ -278,3 +278,11 @@ Klient biznesowy:
 - ceni wygodę i dopasowanie  
 - im bliżej wyjazdu, tym szybciej podejmuje decyzję  
 - jeśli firma płaci → cena ma mniejsze znaczenie  
+
+## Podział pracy w grupie
+
+- Typ rodzinny - Adam
+- Typ snob - Filip
+- Typ biznesowy - Kuba
+
+Przesłanie plików - wspólnie
