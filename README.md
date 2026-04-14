@@ -286,3 +286,9 @@ Klient biznesowy:
 - Typ biznesowy - Kuba
 
 Przesłanie plików - wspólnie
+
+# Plany na najbliższą przyszłość
+
+- Dopracowanie/rozbudowa person
+- Kalibracja parametrów modelu
+- Rozpoczęcie pracy na algorytmem pricingowym
